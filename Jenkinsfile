@@ -1,4 +1,4 @@
-﻿// Laboratorio DevOps - UNINPAHU - Semanas 5 y 6
+// Laboratorio DevOps - UNINPAHU - Semanas 5 y 6
 // Pipeline: Checkout -> Build -> Test -> Package -> Build Image -> Deploy -> Health Check
 
 pipeline {
