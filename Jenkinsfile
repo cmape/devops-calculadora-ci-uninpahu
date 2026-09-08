@@ -1,4 +1,4 @@
-// Laboratorio DevOps - UNINPAHU - Semanas 5 y 6
+﻿// Laboratorio DevOps - UNINPAHU - Semanas 5 y 6
 // Pipeline: Checkout -> Build -> Test -> Package -> Build Image -> Deploy -> Health Check
 
 pipeline {
@@ -55,14 +55,14 @@ pipeline {
             steps {
                 echo 'Desplegando contenedor...'
                 sh 'docker rm -f calculadora-app || true'
-                sh "docker run -d --name calculadora-app -p 8082:8080 calculadora-ci:${env.BUILD_NUMBER}"
+                sh "docker run -d --name calculadora-app -p 8081:8080 calculadora-ci:${env.BUILD_NUMBER}"
             }
         }
         stage('Health Check') {
             steps {
                 echo 'Verificando salud del despliegue...'
                 sh 'sleep 8'
-                sh 'curl -f http://localhost:8082/salud || curl -f http://host.docker.internal:8082/salud'
+                sh 'curl -f http://localhost:8081/salud || curl -f http://host.docker.internal:8081/salud'
             }
         }
     }
@@ -71,7 +71,7 @@ pipeline {
             echo 'Pipeline finalizado correctamente - 7 etapas en verde.'
         }
         failure {
-            echo 'Pipeline falló. Revisa Stage View y Console Output.'
+            echo 'Pipeline fallÃ³. Revisa Stage View y Console Output.'
         }
     }
 }
